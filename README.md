@@ -2,6 +2,7 @@
 Este repositorio incluye actividades llevadas a cabo en el módulo Servicios de red e internet en 2ºASIR
 
 ![ServiceNetwork](hacker.png)
+[![Texto alternativo de la imagen](hacker.png)](https://www.google.com/?hl=es&pli=1)
 
 ## Tema 0 - PRUEBA GITHUB
 
