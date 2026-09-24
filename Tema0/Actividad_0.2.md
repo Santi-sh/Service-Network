@@ -2,10 +2,11 @@
 
 ## 1. ¿Diferencias entre UDP y TCP?
 
-``Fue creado por el científico británico Tim Berners-Lee.
-En CERN (la Organización Europea para la Investigación Nuclear), situado en Suiza en 1990.``
+``TCP es un protocolo que controla la entrega de los datos. Los datos se envían de forma numerada y, si alguno se pierde, se puede volver a solicitar. Por eso es un protocolo más fiable.``
 
-![ServiceNetwork](/Imagenes/Tim_Berners.jpg)
+``UDP, en cambio, busca principalmente que los datos se envíen rápidamente. No comprueba que todos los datos hayan llegado correctamente, por lo que puede haber pérdidas. Esto es útil en aplicaciones como juegos online, streaming o videollamadas, donde es más importante reducir el retraso.``
+
+![tpc](/Imagenes/tcp_udp.png)
 
 ## ¿Qué es pila de protocolos usados por http?
 
