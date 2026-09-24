@@ -25,7 +25,7 @@ SSH → conexión remota.
 
 ```
 
-## ¿Componentes de una URL?
+## 3. ¿Qué aplicaciones usan UDP?
 
 ```
 
@@ -45,7 +45,7 @@ el recurso (ej. /productos/index.html).
 
 ```
 
-## ¿Pasos en la recuperación de una página web mediante HTTP?
+## 4. ¿Qué capa almacena el puerto?
 
 ``Cuando escribes una URL en el navegador y le das a Enter, pasa todo esto:``
 
@@ -59,3 +59,7 @@ el servidor correspondiente.
 archivo dentro de un mensaje HTTP y se lo devuelve al cliente.
 
 ```
+
+## 5. ¿Qué capa almacena la dirección IP?
+
+## 6. ¿Qué es Three-Way Handshake?
