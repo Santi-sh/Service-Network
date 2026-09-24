@@ -8,9 +8,22 @@
 
 ![tpc](../Imagenes/tpc_udp.png)
 
-## ¿Qué es pila de protocolos usados por http?
+## 2. ¿Qué aplicaciones usan TCP?
 
-``Pila de protocolos TCP/IP.``
+``Según el vídeo, algunas aplicaciones que utilizan TCP son:``
+
+```
+HTTP → navegación web.
+
+SMTP → envío de correos electrónicos.
+
+POP → recepción de correos.
+
+IMAP → gestión y recepción de correos.
+
+SSH → conexión remota.
+
+```
 
 ## ¿Componentes de una URL?
 
