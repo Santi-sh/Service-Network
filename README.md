@@ -7,7 +7,6 @@ Este repositorio incluye actividades llevadas a cabo en el módulo Servicios de 
 
 ```
 Actividad 0.1 - HTTP Introduction
-(
 ```
 
 *texto*
