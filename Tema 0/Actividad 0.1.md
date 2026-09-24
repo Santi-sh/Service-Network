@@ -6,7 +6,7 @@
 Fue creado por el científico británico Tim Berners-Lee.
 En CERN (la Organización Europea para la Investigación Nuclear), situado en Suiza en 1990.
 
-![ServiceNetwork](thumbnail.jpeg)
+![ServiceNetwork](/Imagenes/Tim Berners.jpeg)
 ```
 
 ## ¿Qué es pila de protocolos usados por http?
