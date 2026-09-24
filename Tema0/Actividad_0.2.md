@@ -6,7 +6,7 @@
 
 ``UDP, en cambio, busca principalmente que los datos se envíen rápidamente. No comprueba que todos los datos hayan llegado correctamente, por lo que puede haber pérdidas. Esto es útil en aplicaciones como juegos online, streaming o videollamadas, donde es más importante reducir el retraso.``
 
-![tpc](/Imagenes/tcp_udp.png)
+![tpc](../Imagenes/tpc_udp.png)
 
 ## ¿Qué es pila de protocolos usados por http?
 
