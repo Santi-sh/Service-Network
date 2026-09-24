@@ -7,6 +7,6 @@ Este repositorio incluye actividades llevadas a cabo en el módulo Servicios de 
 
 Actividades | Descripción
 ------------ | -------------
-[Actividad 1](Tema-0/Actividad_0.1.md) | HTTP Introduction 
+[Actividad 1](Tema0/Actividad_0.1.md) | HTTP Introduction 
 
 ![ServiceNetwork](thumbnail.jpeg)
