@@ -8,3 +8,4 @@ Este repositorio incluye actividades llevadas a cabo en el módulo Servicios de 
 Actividades | Descripción
 ------------ | -------------
 [Actividad 1](Tema0/Actividad_0.1.md) | HTTP Introduction 
+[Actividad 0.2](Tema0/Actividad_0.2.md) | UDP and TCP: Comparison of Transport Protocols
