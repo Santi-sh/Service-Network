@@ -5,22 +5,8 @@ Este repositorio incluye actividades llevadas a cabo en el módulo Servicios de 
 
 ## Tema 0 - Introducción
 
-```
-
-Actividad 0.1 - HTTP Introduction
-
-```
-
-*texto*
-_texto_
-**texto**
-
-* texto 1
-  * texto 2
-
-
-First HEADER | SECOND HEADER
+Actividades | Descripción
 ------------ | -------------
-contenido celda 1 | contenido celda 2
+[Actividad 1](/Tema-0/Actividad-0.1.md) | contenido celda 2
 
 ![ServiceNetwork](thumbnail.jpeg)
