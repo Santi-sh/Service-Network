@@ -3,10 +3,11 @@ Este repositorio incluye actividades llevadas a cabo en el módulo Servicios de 
 
 [![Texto alternativo de la imagen](hacker.png)](https://www.google.com/?hl=es&pli=1)
 
-## Tema 0 - PRUEBA GITHUB
+## Tema 0 - Introducción
 
 ```
-prueba sección
+Actividad 0.1 - HTTP Introduction
+(
 ```
 
 *texto*
