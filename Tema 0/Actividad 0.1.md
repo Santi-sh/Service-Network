@@ -2,18 +2,14 @@
 
 ## ¿Quién, dónde y cuándo se crea el primer servidor web?
 
-```
-Fue creado por el científico británico Tim Berners-Lee.
-En CERN (la Organización Europea para la Investigación Nuclear), situado en Suiza en 1990.
+``Fue creado por el científico británico Tim Berners-Lee.
+En CERN (la Organización Europea para la Investigación Nuclear), situado en Suiza en 1990.``
 
-![ServiceNetwork](/Imagenes/Tim Berners.jpeg)
-```
+![ServiceNetwork](/Imagenes/Tim_Berners.jpg)
 
 ## ¿Qué es pila de protocolos usados por http?
 
-```
-Pila de protocolos TCP/IP.
-```
+``Pila de protocolos TCP/IP.``
 
 ## ¿Componentes de una URL?
 
@@ -37,11 +33,9 @@ el recurso (ej. /productos/index.html).
 
 ## ¿Pasos en la recuperación de una página web mediante HTTP?
 
+``Cuando escribes una URL en el navegador y le das a Enter, pasa todo esto:``
 
 ```
-
-Cuando escribes una URL en el navegador y le das a Enter, pasa todo esto:
-
 1. Petición (Request): El navegador (cliente) crea un mensaje HTTP
 de tipo GET pidiendo la página o archivo que quieres ver,
 y lo manda por la red usando la conexión TCP/IP hacia
@@ -69,10 +63,6 @@ personalizado para ti (por ejemplo, tu bandeja de entrada de correo o tu perfil 
 
 ## ¿Cómo usar telnet para acceder a un servidor web?
 
-```
-
-Consiste en abrir la terminal o consola, conectarse al servidor por el puerto 80 usando
+``Consiste en abrir la terminal o consola, conectarse al servidor por el puerto 80 usando
 el comando telnet [dominio] 80, y escribir a mano una petición HTTP básica tipo
-GET / HTTP/1.1 junto con la cabecera Host: para ver cómo responde el servidor en texto plano). 
-
-```
+GET / HTTP/1.1 junto con la cabecera Host: para ver cómo responde el servidor en texto plano).``
