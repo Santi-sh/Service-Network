@@ -62,4 +62,15 @@ archivo dentro de un mensaje HTTP y se lo devuelve al cliente.
 
 ## 5. ¿Qué capa almacena la dirección IP?
 
+``La Capa de Red, dentro del paquete de datos.``
+
 ## 6. ¿Qué es Three-Way Handshake?
+
+Es el proceso en tres pasos para abrir una conexión TCP:
+
+    Paso 1 (SYN): El equipo emisor (initiator) envía una solicitud inicial preguntando al receptor si desea establecer una conexión.
+
+    Paso 2 (SYN-ACK): El equipo receptor (acceptor) responde a la solicitud confirmando que está listo.
+
+    Paso 3 (ACK): El emisor recibe la respuesta y envía un último paquete confirmando que la conexión ya ha quedado establecida.
+![tpc](../Imagenes/threeway.jpg)
