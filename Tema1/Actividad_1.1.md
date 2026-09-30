@@ -1,4 +1,4 @@
-# Instalación de Apache en Ubuntu
+# Paso 1: Instalar Apache y actualizar el firewall
 
 Para la instalación solo requerimos de introducir dos comandos en el terminal ``sudo apt update`` y ``sudo apt install apache2``
 (**Para ambas acciones se nos pedirá nuestra password**)
