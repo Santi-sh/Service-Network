@@ -36,6 +36,56 @@ Una vez que la instalación se complete, podrá ejecutar el siguiente comando pa
 
 <img width="447" height="109" alt="imagen" src="https://github.com/user-attachments/assets/f94b2890-ce5b-4767-a8e5-1d6a9fc51c2a" />
 
+# Paso 4: Crear un host virtual para su sitio web
+
+``Ubuntu 20.04`` tiene habilitado un bloque de servidor por defecto, que está configurado para proporcionar documentos del directorio ``/var/www/html``.
+
+Creamos el directorio para your_domain de la siguiente manera:
+
+<img width="642" height="85" alt="imagen" src="https://github.com/user-attachments/assets/bc8f661d-2799-4122-a5eb-2e562109154c" />
+
+A continuación, asignamos la propiedad del directorio con la variable de entorno ``$USER``, que hará referencia a su usuario de sistema actual: ``sudo chown -R $USER:$USER /var/www/your_domain``
+
+Y luego, abra un nuevo archivo de configuración en el directorio ``sites-available`` de ``Apache`` usando el editor de línea de comandos que prefiera. En este caso, utilizaremos ``nano``:
+
+<img width="724" height="82" alt="imagen" src="https://github.com/user-attachments/assets/5e187f69-3d65-4d68-a1b4-6e80c57fe2e6" />
+
+De esta manera, se creará un nuevo archivo en blanco. Pegue la siguiente configuración básica:
+
+<img width="414" height="200" alt="imagen" src="https://github.com/user-attachments/assets/adc1cd91-5e38-4c85-860b-7961099e1df3" />
+
+Con esta configuración de ``VirtualHost``, le indicamos a Apache que proporcione ``your_domain`` usando ``/var/www/your_domain`` como directorio root web.
+
+Ahora, puede usar ``a2ensite`` para habilitar el nuevo host virtual:
+
+<img width="491" height="61" alt="imagen" src="https://github.com/user-attachments/assets/da83a640-2932-4682-b42f-9c4390425b26" />
+
+Puede ser conveniente deshabilitar el sitio web predeterminado que viene instalado con Apache. Es necesario hacerlo si no se utiliza un nombre de dominio personalizado, dado que, en este caso, la configuración predeterminada de Apache sobrescribirá su host virtual. Para deshabilitar el sitio web predeterminado de Apache, escriba lo siguiente:
+
+<img width="499" height="59" alt="imagen" src="https://github.com/user-attachments/assets/deb416c9-b557-4555-9bf8-ef79ca9dc283" />
+
+Por último, vuelva a cargar Apache para que estos cambios surtan efecto:
+
+<img width="204" height="31" alt="imagen" src="https://github.com/user-attachments/assets/8b929ded-fc5b-4e58-95b7-c067beecbbf9" />
+
+Ahora, su nuevo sitio web está activo, pero el directorio root web ``/var/www/your_domain`` todavía está vacío. Cree un archivo ``index.html`` en esa ubicación para poder probar que el host virtual funcione según lo previsto:
+
+<img width="235" height="20" alt="imagen" src="https://github.com/user-attachments/assets/7120a1d3-1af5-4aca-a079-cf7f76214405" />
+
+Incluya el siguiente contenido en este archivo:
+
+<img width="441" height="85" alt="imagen" src="https://github.com/user-attachments/assets/30bac58c-3db7-4669-9736-542c5293c8d0" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 
