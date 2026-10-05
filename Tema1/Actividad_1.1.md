@@ -110,6 +110,7 @@ Tras comprobar la información pertinente sobre su servidor ``PHP`` a través de
 
 Siempre puedes recrear esta página si necesitas acceder a la información posteriormente.
 
+# Paso 6: Probar la conexión con la base de datos desde PHP (opcional)
 
 
 
