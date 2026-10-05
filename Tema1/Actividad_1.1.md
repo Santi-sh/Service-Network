@@ -76,6 +76,39 @@ Incluya el siguiente contenido en este archivo:
 
 <img width="441" height="85" alt="imagen" src="https://github.com/user-attachments/assets/30bac58c-3db7-4669-9736-542c5293c8d0" />
 
+Si desea cambiar este comportamiento, deberá editar el archivo ``/etc/apache2/mods-enabled/dir.conf`` y modificar el orden en el que el archivo ``index.php`` se enumera en la directiva ``DirectoryIndex``:
+
+<img width="290" height="29" alt="imagen" src="https://github.com/user-attachments/assets/5b080b76-eb73-474c-af36-2dd3863a8044" />
+
+Lo que debemos hacer es cambiar de lugar el ``index.php`` a primera posición y ``index.html`` en la segunda para que tenga prioridad el ``.php``.
+
+<img width="576" height="108" alt="imagen" src="https://github.com/user-attachments/assets/7c613ccf-bc70-4aba-9c8d-2b5b86f681ba" />
+
+Después de guardar y cerrar el archivo, deberá volver a cargar Apache para que los cambios surtan efecto:
+
+<img width="198" height="19" alt="imagen" src="https://github.com/user-attachments/assets/595714db-44a2-4340-88fc-4e6756de3bae" />
+
+# Paso 4: Probar el procesamiento de PHP en su servidor web
+
+Cree un archivo nuevo llamado info.php dentro de su carpeta root web personalizada:
+
+``nano /var/www/your_domain/info.php``
+
+Con esto se abrirá un archivo vacío. Añada el siguiente texto, que es el código PHP válido, dentro del archivo:
+
+<img width="502" height="111" alt="imagen" src="https://github.com/user-attachments/assets/1f45c9f4-8e6a-45bd-aa35-af2190dda975" />
+
+Cuando termine, guarde y cierre el archivo.
+
+Para probar esta secuencia de comandos, diríjase a su navegador web y acceda al nombre de dominio o la dirección IP de su servidor, seguido del nombre de la secuencia de comandos, que en este caso es ``info.php``:
+
+``http://server_domain_or_IP/info.php``
+
+Tras comprobar la información pertinente sobre su servidor ``PHP`` a través de esa página, es recomendable que elimine el archivo que creó, dado que contiene información confidencial sobre su entorno ``PHP`` y su servidor de ``Ubuntu``. Puede usar ``rm`` para hacerlo: 
+
+<img width="248" height="18" alt="imagen" src="https://github.com/user-attachments/assets/cd6e9912-a0cb-4a59-b530-7ca05531824c" />
+
+Siempre puedes recrear esta página si necesitas acceder a la información posteriormente.
 
 
 
