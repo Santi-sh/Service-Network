@@ -88,7 +88,7 @@ Después de guardar y cerrar el archivo, deberá volver a cargar Apache para que
 
 <img width="198" height="19" alt="imagen" src="https://github.com/user-attachments/assets/595714db-44a2-4340-88fc-4e6756de3bae" />
 
-# Paso 4: Probar el procesamiento de PHP en su servidor web
+# Paso 5: Probar el procesamiento de PHP en su servidor web
 
 Cree un archivo nuevo llamado info.php dentro de su carpeta root web personalizada:
 
