@@ -102,7 +102,10 @@ Cuando termine, guarde y cierre el archivo.
 
 Para probar esta secuencia de comandos, diríjase a su navegador web y acceda al nombre de dominio o la dirección IP de su servidor, seguido del nombre de la secuencia de comandos, que en este caso es ``info.php``:
 
-``http://server_domain_or_IP/info.php``
+``http://localhost/info.php``
+
+<img width="733" height="484" alt="imagen" src="https://github.com/user-attachments/assets/17ae666a-bd35-470a-8e5c-98ab095491ad" />
+
 
 Tras comprobar la información pertinente sobre su servidor ``PHP`` a través de esa página, es recomendable que elimine el archivo que creó, dado que contiene información confidencial sobre su entorno ``PHP`` y su servidor de ``Ubuntu``. Puede usar ``rm`` para hacerlo: 
 
@@ -111,6 +114,34 @@ Tras comprobar la información pertinente sobre su servidor ``PHP`` a través de
 Siempre puedes recrear esta página si necesitas acceder a la información posteriormente.
 
 # Paso 6: Probar la conexión con la base de datos desde PHP (opcional)
+
+Si desea probar si PHP puede establecer conexión con MySQL y ejecutar consultas a la base de datos, puede crear una tabla de prueba con datos ficticios y realizar consultas relacionadas con su contenido con una secuencia de comandos PHP.
+
+Crearemos una base de datos denominada ``example_database`` y un usuario llamado ``example_user``, pero puede sustituir estos nombres por valores diferentes.
+
+Primero, establezca conexión con la consola de MySQL usando la cuenta ``root``: 
+
+<img width="416" height="71" alt="imagen" src="https://github.com/user-attachments/assets/80a87672-49f5-4dd5-95d6-23479a1c335c" />
+
+Para crear una base de datos nueva, ejecute el siguiente comando desde su consola de MySQL:
+
+<img width="508" height="205" alt="imagen" src="https://github.com/user-attachments/assets/9ec265f1-af50-4551-bf18-15945a2457a8" />
+
+Damos enter y nos confirmará que está creada:
+
+<img width="265" height="49" alt="imagen" src="https://github.com/user-attachments/assets/1bd9c7cd-f192-47df-8c72-c17df29831bf" />
+
+
+El siguiente comando crea un usuario nuevo llamado ``example_user``, que utiliza ``mysql_native_password`` como método de autenticación predeterminado. Definimos la contraseña de este usuario como ``password``, pero debe sustituir este valor por una contraseña segura de su elección.
+
+<img width="465" height="32" alt="imagen" src="https://github.com/user-attachments/assets/c1575ded-d4c8-4481-bd27-4b12048edd29" />
+
+Ahora, debemos darle permiso a este usuario a la base de datos ``example_database``:
+
+
+
+
+
 
 
 
