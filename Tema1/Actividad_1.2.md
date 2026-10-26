@@ -137,8 +137,116 @@ Alias /mis-docs /home/usuario/public_html/documentos
 </Directory>
 ```
 
+## 10. ¿Para qué sirve la directiva Options y cómo desactivar la indexación de directorios?
 
+* ¿Para qué sirve y dónde aparece? La directiva ``Options`` se utiliza dentro de bloques ``<Directory>``, ``<Location>`` o en archivos ``.htaccess`` para controlar qué características del servidor están disponibles en un directorio específico (por ejemplo, ``Indexes``, ``FollowSymLinks``, ``ExecCGI``, etc.).
 
+* Indexación y cómo desactivarla: Por defecto, si un directorio no tiene un archivo índice (como ``index.html``), Apache puede mostrar una lista con el contenido de la carpeta (``Indexes``). Para desactivarlo y evitar que los usuarios naveguen por los directorios sin índice, utiliza el signo menos ``-`` delante de la opción en la configuración:
+
+```
+<Directory /var/www/html/prueba>
+    Options -Indexes
+</Directory>
+```
+
+# Parte 2: Trabajando con Scripts
+
+A continuación tienes los tres scripts en Bash solicitados, con su respectiva validación de parámetros, manejo de errores y lógica mediante ``grep`` y ``sed``.
+
+1. Script para añadir un puerto de escucha en Apache (``anadir_puerto.sh``)
+
+```
+#!/bin/bash
+
+# Comprobar si se recibe exactamente un parámetro
+if [ "$#" -ne 1 ]; then
+    echo "Error de sintaxis."
+    echo "Uso: $0 <puerto>"
+    exit 1
+fi
+
+PUERTO=$1
+FICHERO_PUERTOS="/etc/apache2/ports.conf"
+
+# Comprobar si el archivo existe
+if [ ! -f "$FICHERO_PUERTOS" ]; then
+    echo "Error: No se encuentra el archivo $FICHERO_PUERTOS."
+    exit 1
+fi
+
+# Comprobar si el puerto ya está presente en el fichero
+if grep -q "Listen $PUERTO" "$FICHERO_PUERTOS"; then
+    echo "El puerto $PUERTO ya está configurado en $FICHERO_PUERTOS."
+    exit 0
+fi
+
+# Añadir el puerto al final del archivo
+echo "Listen $PUERTO" | sudo tee -a "$FICHERO_PUERTOS" > /dev/null
+echo "Puerto $PUERTO añadido correctamente a $FICHERO_PUERTOS."
+sudo systemctl reload apache2
+```
+
+2. Script para añadir un dominio y una IP al fichero hosts (``anadir_hosts.sh``)
+
+```
+#!/bin/bash
+
+# Comprobar número de parámetros (IP y Dominio)
+if [ "$#" -ne 2 ]; then
+    echo "Error de sintaxis."
+    echo "Uso: $0 <IP> <dominio>"
+    exit 1
+fi
+
+IP=$1
+DOMINIO=$2
+FICHERO_HOSTS="/etc/hosts"
+
+# Comprobar si el dominio ya existe en el fichero hosts
+if grep -q "[[:space:]]$DOMINIO\$" "$FICHERO_HOSTS" || grep -q "[[:space:]]$DOMINIO[[:space:]]" "$FICHERO_HOSTS"; then
+    echo "El dominio '$DOMINIO' ya existe en $FICHERO_HOSTS."
+    exit 0
+fi
+
+# Añadir la entrada al fichero hosts
+echo "$IP   $DOMINIO" | sudo tee -a "$FICHERO_HOSTS" > /dev/null
+echo "Se ha añadido correctamente '$IP $DOMINIO' a $FICHERO_HOSTS."
+```
+
+3. Script para crear una página web básica (``crear_pagina.sh``)
+
+```
+#!/bin/bash
+
+# Comprobar número de parámetros (Ruta/Fichero, Título, Cabecera, Mensaje)
+if [ "$#" -ne 4 ]; then
+    echo "Error de sintaxis."
+    echo "Uso: $0 <ruta_fichero.html> <título> <cabecera> <mensaje>"
+    exit 1
+fi
+
+FICHERO=$1
+TITULO=$2
+CABECERA=$3
+MENSAJE=$4
+
+# Generar la estructura HTML
+cat << EOF | sudo tee "$FICHERO" > /dev/null
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>$TITULO</title>
+</head>
+<body>
+    <h1>$CABECERA</h1>
+    <p>$MENSAJE</p>
+</body>
+</html>
+EOF
+
+echo "Página web creada con éxito en: $FICHERO"
+```
 
 
 
