@@ -138,12 +138,77 @@ El siguiente comando crea un usuario nuevo llamado ``example_user``, que utiliza
 
 Ahora, debemos darle permiso a este usuario a la base de datos ``example_database``:
 
+```
+GRANT ALL PRIVILEGES ON example_database.* TO 'example_user'@'%';
+
+```
+
+<img width="466" height="21" alt="imagen" src="https://github.com/user-attachments/assets/02a681cd-8672-4220-8a4b-a056abb50189" />
+
+A continuación, recarga los privilegios y sal de la consola de MySQL:
+
+```
+FLUSH PRIVILEGES;
+EXIT;
+
+```
+
+<img width="296" height="73" alt="imagen" src="https://github.com/user-attachments/assets/d4f115d7-3c41-4372-a642-1f5d432727a7" />
 
 
+Una vez hecho esto, crearemos un script de prueba en PHP para verificar que la conexión con la base de datos funciona correctamente. Crea y abre un archivo llamado ``db-test.php`` en tu directorio web personalizado:
+
+```
+nano /var/www/your_domain/db-test.php
+
+```
+
+Añade el siguiente código PHP para probar la conexión:
+
+<img width="455" height="167" alt="imagen" src="https://github.com/user-attachments/assets/b4dd502b-42a1-4701-a5e5-11d1079b8eb8" />
+
+Guarda y cierra el archivo. Dirígete a tu navegador web y accede a la dirección para comprobar que se establece la conexión con éxito: ``http://localhost/db-test.php``
+
+# Pasos Finales
+
+Una vez concluido todo el proceso de instalación y comprobación de la pila LAMP, debemos realizar las siguientes tareas finales de configuración en tu servidor:
+
+## 1. Habilitar nuevamente el Virtual Host por defecto
+
+Ejecutaremos el siguiente comando para volver a activar el sitio predeterminado de Apache:
+
+```
+sudo a2ensite 000-default
+```
+
+<img width="486" height="60" alt="imagen" src="https://github.com/user-attachments/assets/67ba491a-7ed9-4db1-a604-80c69824e535" />
 
 
+## 2. Deshabilitar el Virtual Host “your_domain”
+
+Desactiva el host virtual personalizado que creaste para la práctica:
+
+```
+sudo a2ensite your_domain
+```
+
+<img width="496" height="45" alt="imagen" src="https://github.com/user-attachments/assets/5bcf3644-3658-4e62-ac69-bea0ae704510" />
 
 
+(Nota: El comando estándar de Apache para desactivar un sitio es ``a2dissite your_domain``, utilízalo si el sistema te lo requiere).
+
+## 3. Reiniciar y comprobar Apache
+
+Por último, verifica que la sintaxis de los archivos de configuración sea correcta y recarga el servicio para aplicar los cambios definitivos:
+
+```
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+<img width="963" height="60" alt="imagen" src="https://github.com/user-attachments/assets/38d9e3f7-b21b-4ee1-aa49-0681c38d711f" />
+
+<img width="521" height="32" alt="imagen" src="https://github.com/user-attachments/assets/299db511-258c-4dfb-a843-2c03705bb898" />
 
 
 
