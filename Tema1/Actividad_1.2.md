@@ -32,6 +32,21 @@ Para añadir el puerto 81, debemos editar el archivo de puertos de Apache (en di
 
 Para que tu equipo resuelva este dominio localmente:
 
+1. Abre el archivo de hosts con privilegios de administrador:
+
+```
+sudo nano /etc/hosts
+```
+
+2. Añade la siguiente línea al final del archivo:
+
+```
+127.0.0.1   marisma.intranet
+```
+3. Cambiar la directiva “ServerTokens” para mostrar el nombre del producto
+
+La directiva ServerTokens controla qué información envía el servidor web en la cabecera de respuesta HTTP Server.
+
 
 # 8. Usa la directiva userdir
 
