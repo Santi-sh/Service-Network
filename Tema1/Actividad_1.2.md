@@ -12,6 +12,7 @@ Para añadir el puerto 81, debemos editar el archivo de puertos de Apache (en di
    ```
 2. Añadimos la directiva de escucha debajo de la del puerto 80:
     ```
+   Listen 80
    Listen 81
 
    ```
