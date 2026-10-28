@@ -53,14 +53,21 @@ La directiva ``ServerTokens`` controla qué información envía el servidor web 
 * Para mostrar únicamente el nombre del producto (por ejemplo, ``Apache``), edita el archivo de seguridad de Apache (``/etc/apache2/conf-available/security.conf`` o ``apache2.conf``) y configura:
 
 ```
-ServerTokens Prod
+sudo nano /etc/apache2/conf-available/security.conf
+
+y cambiamos donde pone 'ServerTokens OS' por 'ServerTokens Prod'
 ```
+
+<img width="563" height="196" alt="imagen" src="https://github.com/user-attachments/assets/2f68165a-d4e8-47fc-8305-67c98375aa1c" />
+
 
 * Comprobación con cURL:
 
 ```
 curl -I http://localhost
 ```
+
+
 
 Observarás que la cabecera ``Server`` devuelve únicamente ``Apache`` (o el valor configurado) en lugar de detalles del sistema operativo o versiones exactas.
 
