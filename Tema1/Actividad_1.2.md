@@ -67,6 +67,7 @@ y cambiamos donde pone 'ServerTokens OS' por 'ServerTokens Prod'
 curl -I http://localhost
 ```
 
+<img width="354" height="112" alt="imagen" src="https://github.com/user-attachments/assets/6db866cb-9224-4224-bbcd-1bd33f573f62" />
 
 
 Observarás que la cabecera ``Server`` devuelve únicamente ``Apache`` (o el valor configurado) en lugar de detalles del sistema operativo o versiones exactas.
