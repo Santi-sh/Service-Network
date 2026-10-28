@@ -44,6 +44,8 @@ sudo nano /etc/hosts
 127.0.0.1   marisma.intranet
 ```
 
+
+
 ## 3. Cambiar la directiva “ServerTokens” para mostrar el nombre del producto
 
 La directiva ``ServerTokens`` controla qué información envía el servidor web en la cabecera de respuesta ``HTTP Server``.
