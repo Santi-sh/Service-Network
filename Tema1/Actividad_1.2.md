@@ -142,6 +142,8 @@ Y compruébalo con:
 curl -I http://localhost/prueba/
 ```
 
+<img width="386" height="68" alt="imagen" src="https://github.com/user-attachments/assets/14aa2ece-4efe-44e7-a879-c0d22b6ab422" />
+
 
 ## 7. Redireccionar tan solo una página en lugar de toda la carpeta
 
