@@ -44,7 +44,7 @@ sudo nano /etc/hosts
 127.0.0.1   marisma.intranet
 ```
 
-
+<img width="520" height="164" alt="imagen" src="https://github.com/user-attachments/assets/c05c3d53-b404-4e73-a807-a63ca5d3e0c7" />
 
 ## 3. Cambiar la directiva “ServerTokens” para mostrar el nombre del producto
 
