@@ -106,6 +106,9 @@ echo "<h1>Página 1 de Prueba 2</h1>" | sudo tee /var/www/html/prueba2/index.htm
 echo "<h1>Página 2 de Prueba 2</h1>" | sudo tee /var/www/html/prueba2/pagina2.html
 ```
 
+<img width="621" height="131" alt="imagen" src="https://github.com/user-attachments/assets/d0be4b11-2107-4083-9ecd-2a6d1afcefdb" />
+
+
 ## 6. Redireccionar el contenido de la carpeta “prueba” hacia “prueba2”
 
 En el archivo de configuración de tu sitio web (o en un archivo ``.htaccess`` dentro de ``/var/www/html/``), añade la siguiente directiva de redirección:
