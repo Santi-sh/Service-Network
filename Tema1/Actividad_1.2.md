@@ -108,6 +108,9 @@ echo "<h1>Página 2 de Prueba 2</h1>" | sudo tee /var/www/html/prueba2/pagina2.h
 
 <img width="621" height="131" alt="imagen" src="https://github.com/user-attachments/assets/d0be4b11-2107-4083-9ecd-2a6d1afcefdb" />
 
+<img width="490" height="136" alt="imagen" src="https://github.com/user-attachments/assets/e01290b1-44b7-4d92-9b18-2e68e21c33ba" />
+
+
 
 ## 6. Redireccionar el contenido de la carpeta “prueba” hacia “prueba2”
 
