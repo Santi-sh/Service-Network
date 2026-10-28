@@ -127,6 +127,8 @@ Dentro del bloque <VirtualHost *:80> ... </VirtualHost>, por ejemplo justo debaj
 Redirect /prueba /prueba2
 ```
 
+<img width="393" height="221" alt="imagen" src="https://github.com/user-attachments/assets/a14493f2-b1f3-4e3e-bf58-9d91846b89d3" />
+
 ## 7. Redireccionar tan solo una página en lugar de toda la carpeta
 
 Puedes especificar la redirección para un archivo concreto en lugar del directorio entero:
@@ -134,9 +136,6 @@ Puedes especificar la redirección para un archivo concreto en lugar del directo
 ```
 Redirect /prueba/pagina2.html /prueba2/pagina2.html
 ```
-
-<img width="393" height="221" alt="imagen" src="https://github.com/user-attachments/assets/a14493f2-b1f3-4e3e-bf58-9d91846b89d3" />
-
 
 ## 8. Usa la directiva userdir
 
