@@ -114,7 +114,14 @@ echo "<h1>Página 2 de Prueba 2</h1>" | sudo tee /var/www/html/prueba2/pagina2.h
 
 ## 6. Redireccionar el contenido de la carpeta “prueba” hacia “prueba2”
 
-En el archivo de configuración de tu sitio web (o en un archivo ``.htaccess`` dentro de ``/var/www/html/``), añade la siguiente directiva de redirección:
+En el archivo de configuración de tu sitio web:
+
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+
+```
+
+Dentro del bloque <VirtualHost *:80> ... </VirtualHost>, por ejemplo justo debajo de DocumentRoot /var/www/html, añade:
 
 ```
 Redirect /prueba /prueba2
@@ -128,7 +135,7 @@ Puedes especificar la redirección para un archivo concreto en lugar del directo
 Redirect /prueba/pagina2.html /prueba2/pagina2.html
 ```
 
-
+<img width="393" height="221" alt="imagen" src="https://github.com/user-attachments/assets/a14493f2-b1f3-4e3e-bf58-9d91846b89d3" />
 
 
 ## 8. Usa la directiva userdir
