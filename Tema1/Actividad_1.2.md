@@ -127,7 +127,21 @@ Dentro del bloque <VirtualHost *:80> ... </VirtualHost>, por ejemplo justo debaj
 Redirect /prueba /prueba2
 ```
 
-<img width="393" height="221" alt="imagen" src="https://github.com/user-attachments/assets/a14493f2-b1f3-4e3e-bf58-9d91846b89d3" />
+<img width="382" height="226" alt="imagen" src="https://github.com/user-attachments/assets/3f3cdf03-a70a-4861-9588-6728998f6e3c" />
+
+Después de cambiarla, guarda con Ctrl+O, Enter, Ctrl+X y reinicia Apache:
+
+```
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+```
+
+Y compruébalo con:
+
+```
+curl -I http://localhost/prueba/
+```
+
 
 ## 7. Redireccionar tan solo una página en lugar de toda la carpeta
 
