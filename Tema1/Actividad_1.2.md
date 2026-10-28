@@ -85,6 +85,8 @@ ServerSignature Off  # Oculta el pie de página
 
 2. Modifícalo a ``Off`` para desactivarlo o ``On`` para activarlo, guarda los cambios y reinicia Apache. Genera un error intencionado (ej. accediendo a una URL inexistente) para comprobar el resultado visual.
 
+<img width="367" height="101" alt="imagen" src="https://github.com/user-attachments/assets/f97a11da-7dde-497e-a7b6-6f5dcc6bc8eb" />
+
 
 ## 5. Crear directorios “prueba” y “prueba2” con páginas de ejemplo
 
