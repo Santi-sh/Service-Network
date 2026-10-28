@@ -153,6 +153,27 @@ Puedes especificar la redirección para un archivo concreto en lugar del directo
 Redirect /prueba/pagina2.html /prueba2/pagina2.html
 ```
 
+<img width="472" height="217" alt="imagen" src="https://github.com/user-attachments/assets/a25621d3-c391-4064-b7f9-bab1d08ff550" />
+
+
+Después de cambiarla, guarda con Ctrl+O, Enter, Ctrl+X y reinicia Apache:
+
+```
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+```
+
+Ahora lo comprobamos en el navegador escribiendo:
+
+```
+http://localhost/prueba/pagina2.html
+```
+
+Y te lleva a ``http://localhost/prueba2/pagina2.html``
+
+<img width="375" height="122" alt="imagen" src="https://github.com/user-attachments/assets/3ca0fc25-1e74-4a68-bd7b-55da489be7b9" />
+
+
 ## 8. Usa la directiva userdir
 
 1. Habilita el módulo userdir:
