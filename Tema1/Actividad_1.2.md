@@ -235,6 +235,9 @@ Cada vez que modificas archivos de configuración de Apache, es obligatorio rein
 sudo systemctl restart apache2
 ```
 
+* Ahora puedes ingresar en tu navegador web a la dirección ``http://localhost/mis-docs`` para ver el contenido de esa carpeta específica.
+
+
 ## 10. ¿Para qué sirve la directiva Options y cómo desactivar la indexación de directorios?
 
 * ¿Para qué sirve y dónde aparece? La directiva ``Options`` se utiliza dentro de bloques ``<Directory>``, ``<Location>`` o en archivos ``.htaccess`` para controlar qué características del servidor están disponibles en un directorio específico (por ejemplo, ``Indexes``, ``FollowSymLinks``, ``ExecCGI``, etc.).
