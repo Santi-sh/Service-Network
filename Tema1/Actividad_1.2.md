@@ -183,7 +183,13 @@ sudo a2enmod userdir
 sudo systemctl restart apache2
 ```
 
-2. Esto permite que los usuarios del sistema tengan una carpeta pública (por defecto ``public_html``) accesible mediante ``http://localhost/~nombreusuario/``.
+<img width="565" height="120" alt="imagen" src="https://github.com/user-attachments/assets/afe566fe-c9dd-41ac-a4b4-3043abd77c80" />
+
+
+2. Esto permite que los usuarios del sistema tengan una carpeta pública (por defecto ``public_html``) accesible mediante ``http://localhost/~santiago/``.
+
+**debemos asegurarnos de haber hecho ``chmod 755 /home/santiago`` para dar permisos y poder visualizarlo en el navegador
+
 
 
 ## 9. Usar la directiva Alias para redireccionar a una carpeta dentro del directorio de usuario
