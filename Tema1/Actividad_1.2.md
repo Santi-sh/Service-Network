@@ -200,19 +200,16 @@ En sistemas basados en Ubuntu/Debian, lo más limpio es añadir esto al archivo 
 
 
 ```
-sudo nano /etc/apache2/sites-available/000-default.conf
+sudo nano /etc/apache2/apache2.conf
 ```
 
 2. Añade el bloque de configuración
 
-Mueve el cursor hacia abajo con las flechas del teclado y, justo antes de la línea que dice ``</VirtualHost>``, pega el siguiente código adaptado a tu usuario (santiago):
+Mueve el cursor hacia abajo con las flechas del teclado y, abajo del todo, pega el siguiente código adaptado a tu usuario (santiago):
 
 ```
 Alias /mis-docs /home/santiago/public_html/documentos
 
-<Directory /home/santiago/public_html/documentos>
-    Require all granted
-</Directory>
 ```
 
 <img width="709" height="471" alt="imagen" src="https://github.com/user-attachments/assets/c67cc591-f2bb-406d-abe2-b9f0622afba0" />
