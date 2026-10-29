@@ -215,6 +215,9 @@ Alias /mis-docs /home/santiago/public_html/documentos
 </Directory>
 ```
 
+<img width="709" height="471" alt="imagen" src="https://github.com/user-attachments/assets/c67cc591-f2bb-406d-abe2-b9f0622afba0" />
+
+
 3. Crea la carpeta física
 
 Para que el alias no falle al buscar la ruta, asegúrate de crear la carpeta documentos dentro de tu directorio público:
