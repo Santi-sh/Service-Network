@@ -234,6 +234,9 @@ sudo systemctl restart apache2
 
 * Ahora puedes ingresar en tu navegador web a la dirección ``http://localhost/mis-docs`` para ver el contenido de esa carpeta específica.
 
+<img width="861" height="397" alt="imagen" src="https://github.com/user-attachments/assets/8721c483-219f-410b-9f80-b25b5e8c3b3d" />
+
+
 
 ## 10. ¿Para qué sirve la directiva Options y cómo desactivar la indexación de directorios?
 
