@@ -188,20 +188,48 @@ sudo systemctl restart apache2
 
 2. Esto permite que los usuarios del sistema tengan una carpeta pública (por defecto ``public_html``) accesible mediante ``http://localhost/~santiago/``.
 
-*debemos asegurarnos de haber hecho ``chmod 755 /home/santiago`` para dar permisos y poder visualizarlo en el navegador
+* debemos asegurarnos de haber hecho ``chmod 755 /home/santiago`` para dar permisos y poder visualizarlo en el navegador
 
 
 
 ## 9. Usar la directiva Alias para redireccionar a una carpeta dentro del directorio de usuario
 
-Puedes mapear una URL específica a una ruta absoluta en el sistema de ficheros, por ejemplo, apuntando a los documentos de un usuario:
+1. Abre el archivo de configuración de Apache
+
+En sistemas basados en Ubuntu/Debian, lo más limpio es añadir esto al archivo del sitio por defecto de Apache. Ábrelo con el editor nano:
+
 
 ```
-Alias /mis-docs /home/usuario/public_html/documentos
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
 
-<Directory /home/usuario/public_html/documentos>
+2. Añade el bloque de configuración
+
+Mueve el cursor hacia abajo con las flechas del teclado y, justo antes de la línea que dice ``</VirtualHost>``, pega el siguiente código adaptado a tu usuario (santiago):
+
+```
+Alias /mis-docs /home/santiago/public_html/documentos
+
+<Directory /home/santiago/public_html/documentos>
     Require all granted
 </Directory>
+```
+
+3. Crea la carpeta física
+
+Para que el alias no falle al buscar la ruta, asegúrate de crear la carpeta documentos dentro de tu directorio público:
+
+```
+mkdir -p /home/santiago/public_html/documentos
+```
+
+
+4. Reinicia Apache para aplicar los cambios
+
+Cada vez que modificas archivos de configuración de Apache, es obligatorio reiniciar el servicio:
+
+```
+sudo systemctl restart apache2
 ```
 
 ## 10. ¿Para qué sirve la directiva Options y cómo desactivar la indexación de directorios?
