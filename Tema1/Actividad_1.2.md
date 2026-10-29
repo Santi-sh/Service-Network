@@ -188,7 +188,7 @@ sudo systemctl restart apache2
 
 2. Esto permite que los usuarios del sistema tengan una carpeta pública (por defecto ``public_html``) accesible mediante ``http://localhost/~santiago/``.
 
-**debemos asegurarnos de haber hecho ``chmod 755 /home/santiago`` para dar permisos y poder visualizarlo en el navegador
+*debemos asegurarnos de haber hecho ``chmod 755 /home/santiago`` para dar permisos y poder visualizarlo en el navegador
 
 
 
