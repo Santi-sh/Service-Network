@@ -240,15 +240,52 @@ sudo systemctl restart apache2
 
 ## 10. ¿Para qué sirve la directiva Options y cómo desactivar la indexación de directorios?
 
-* ¿Para qué sirve y dónde aparece? La directiva ``Options`` se utiliza dentro de bloques ``<Directory>``, ``<Location>`` o en archivos ``.htaccess`` para controlar qué características del servidor están disponibles en un directorio específico (por ejemplo, ``Indexes``, ``FollowSymLinks``, ``ExecCGI``, etc.).
 
-* Indexación y cómo desactivarla: Por defecto, si un directorio no tiene un archivo índice (como ``index.html``), Apache puede mostrar una lista con el contenido de la carpeta (``Indexes``). Para desactivarlo y evitar que los usuarios naveguen por los directorios sin índice, utiliza el signo menos ``-`` delante de la opción en la configuración:
+1. Vuelve a abrir el archivo de configuración
+
+Abre el archivo en la terminal con nano:
+
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+
+```
+
+
+2. Baja al final y añade el nuevo bloque
+
+Usa las flechas del teclado para ir abajo del todo. Colócate justo encima de </VirtualHost> (debajo del bloque de mis-docs que pusiste antes) y escribe esto:
 
 ```
 <Directory /var/www/html/prueba>
     Options -Indexes
 </Directory>
 ```
+
+* ¿Para qué sirve y dónde aparece? La directiva ``Options`` se utiliza dentro de bloques ``<Directory>``, ``<Location>`` o en archivos ``.htaccess`` para controlar qué características del servidor están disponibles en un directorio específico (por ejemplo, ``Indexes``, ``FollowSymLinks``, ``ExecCGI``, etc.).
+
+* Indexación y cómo desactivarla: Por defecto, si un directorio no tiene un archivo índice (como ``index.html``), Apache puede mostrar una lista con el contenido de la carpeta (``Indexes``). Para desactivarlo y evitar que los usuarios naveguen por los directorios sin índice, utiliza el signo menos ``-`` delante de la opción en la configuración:
+
+
+3. Crea la carpeta de prueba en el servidor
+
+Para que la regla tenga efecto, esa carpeta debe existir en la ruta principal de Apache (/var/www/html/). Créala con este comando:
+
+```
+sudo mkdir -p /var/www/html/prueba
+```
+
+4. Reinicia Apache para aplicar los cambios
+
+```
+sudo systemctl restart apache2
+```
+
+📝 ¿Qué acabas de hacer? (Para tu ejercicio teórico)
+
+• ¿Para qué sirve Options? Sirve para activar o desactivar funciones avanzadas de Apache en una carpeta (como permitir ejecutar scripts o seguir accesos directos).
+• ¿Qué hace -Indexes? El signo menos (-) quita el permiso. Al poner -Indexes, si alguien entra a http://localhost/prueba/ y no hay un archivo index.html, el servidor le mostrará un error 403 Forbidden en lugar de enseñarle la lista con todos tus archivos privados.
+
+
 
 # Parte 2: Trabajando con Scripts
 
