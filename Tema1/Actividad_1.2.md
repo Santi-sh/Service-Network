@@ -392,7 +392,7 @@ nano /home/santiago/anadir_hosts.sh
 chmod +x /home/santiago/anadir_hosts.sh
 ```
 
-
+<img width="935" height="434" alt="imagen" src="https://github.com/user-attachments/assets/91f307b0-964f-47c2-b036-c013a8b10fe7" />
 
 
 3. Ejecuta las siguientes pruebas en la terminal para comprobar su funcionamiento:
@@ -402,6 +402,14 @@ chmod +x /home/santiago/anadir_hosts.sh
 /home/santiago/anadir_hosts.sh 127.0.0.1 prueba.local   # Demuestra que añade la IP y el dominio correctamente
 /home/santiago/anadir_hosts.sh 127.0.0.1 prueba.local   # Demuestra que detecta que el dominio ya existe
 ```
+
+<img width="860" height="222" alt="imagen" src="https://github.com/user-attachments/assets/f00e6353-e57a-41f8-9f09-e5088ffcddf2" />
+
+
+Comprobamos que se ha creado correctamente buscando en el navegador "prueba.local":
+
+<img width="903" height="728" alt="imagen" src="https://github.com/user-attachments/assets/8914f7d4-5010-4227-a8e6-cfb9f7a30b7e" />
+
 
 
 ## SCRIPT 3
@@ -439,6 +447,23 @@ cat << EOF | sudo tee "$FICHERO" > /dev/null
 EOF
 
 echo "Página web creada con éxito en: $FICHERO"
+```
+
+2. Crea el archivo y dale permisos de ejecución:
+
+```
+nano /home/santiago/crear_pagina.sh
+chmod +x /home/santiago/crear_pagina.sh
+```
+
+
+
+3. Ejecuta las siguientes pruebas para verificar la creación del archivo HTML:
+
+```
+/home/santiago/crear_pagina.sh                                                                 # Demuestra el error de sintaxis al no pasar los 4 parámetros
+/home/santiago/crear_pagina.sh /var/www/html/test.html "Mi Web" "Hola Mundo" "Página de prueba" # Crea la página web con los datos indicados
+cat /var/www/html/test.html                                                                    # Muestra el contenido generado para verificar el HTML
 ```
 
 
