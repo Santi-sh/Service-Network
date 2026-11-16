@@ -261,6 +261,9 @@ Usa las flechas del teclado para ir abajo del todo. Colócate justo encima de </
 </Directory>
 ```
 
+<img width="596" height="346" alt="imagen" src="https://github.com/user-attachments/assets/8a4c5d9e-0daf-4f89-976d-3b1f18123e23" />
+
+
 * ¿Para qué sirve y dónde aparece? La directiva ``Options`` se utiliza dentro de bloques ``<Directory>``, ``<Location>`` o en archivos ``.htaccess`` para controlar qué características del servidor están disponibles en un directorio específico (por ejemplo, ``Indexes``, ``FollowSymLinks``, ``ExecCGI``, etc.).
 
 * Indexación y cómo desactivarla: Por defecto, si un directorio no tiene un archivo índice (como ``index.html``), Apache puede mostrar una lista con el contenido de la carpeta (``Indexes``). Para desactivarlo y evitar que los usuarios naveguen por los directorios sin índice, utiliza el signo menos ``-`` delante de la opción en la configuración:
@@ -280,16 +283,23 @@ sudo mkdir -p /var/www/html/prueba
 sudo systemctl restart apache2
 ```
 
+<img width="509" height="97" alt="imagen" src="https://github.com/user-attachments/assets/58ef7ba4-4e75-4efd-b17d-97c73d3dff13" />
+
+
 📝 ¿Qué acabas de hacer? (Para tu ejercicio teórico)
 
 • ¿Para qué sirve Options? Sirve para activar o desactivar funciones avanzadas de Apache en una carpeta (como permitir ejecutar scripts o seguir accesos directos).
+
 • ¿Qué hace -Indexes? El signo menos (-) quita el permiso. Al poner -Indexes, si alguien entra a http://localhost/prueba/ y no hay un archivo index.html, el servidor le mostrará un error 403 Forbidden en lugar de enseñarle la lista con todos tus archivos privados.
 
+<img width="737" height="282" alt="imagen" src="https://github.com/user-attachments/assets/e78044c3-75ca-49b4-8f7d-14d211b0f96a" />
 
 
 # Parte 2: Trabajando con Scripts
 
 A continuación tienes los tres scripts en Bash solicitados, con su respectiva validación de parámetros, manejo de errores y lógica mediante ``grep`` y ``sed``.
+
+## SCRIPT 1
 
 1. Script para añadir un puerto de escucha en Apache (``anadir_puerto.sh``)
 
@@ -323,8 +333,32 @@ echo "Listen $PUERTO" | sudo tee -a "$FICHERO_PUERTOS" > /dev/null
 echo "Puerto $PUERTO añadido correctamente a $FICHERO_PUERTOS."
 sudo systemctl reload apache2
 ```
+2. Crea el archivo y dale permisos:
 
-2. Script para añadir un dominio y una IP al fichero hosts (``anadir_hosts.sh``)
+```
+sudo nano /home/santiago/anadir_puerto.sh
+```
+
+<img width="583" height="353" alt="imagen" src="https://github.com/user-attachments/assets/032efdfa-9d2a-46f4-8594-7c7bf8d15e8a" />
+
+y luego le otorgamos permisos con ``chmod +x anadir_puerto.sh``.
+
+<img width="758" height="44" alt="imagen" src="https://github.com/user-attachments/assets/142beb51-d1fb-49fb-b2c0-185bb9434fca" />
+
+Y ahora ejecutamos estas pruebas para comprobar que está todo correctamente:
+
+```
+./home/santiago/anadir_puerto.sh        # Demuestra el error de sintaxis al no pasar parámetros
+./home/santiago/anadir_puerto.sh 8080   # Demuestra que añade el puerto 8080
+./home/santiago/anadir_puerto.sh 8080   # Demuestra que avisa de que ya existe
+```
+
+
+<img width="416" height="84" alt="imagen" src="https://github.com/user-attachments/assets/f89ad6e6-9bcd-4085-ab38-7c8db91854f5" />
+
+## SCRIPT 2
+
+1. Script para añadir un dominio y una IP al fichero hosts (``anadir_hosts.sh``)
 
 ```
 #!/bin/bash
@@ -351,7 +385,9 @@ echo "$IP   $DOMINIO" | sudo tee -a "$FICHERO_HOSTS" > /dev/null
 echo "Se ha añadido correctamente '$IP $DOMINIO' a $FICHERO_HOSTS."
 ```
 
-3. Script para crear una página web básica (``crear_pagina.sh``)
+## SCRIPT 3
+
+1. Script para crear una página web básica (``crear_pagina.sh``)
 
 ```
 #!/bin/bash
