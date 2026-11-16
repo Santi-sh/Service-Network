@@ -456,6 +456,8 @@ nano /home/santiago/crear_pagina.sh
 chmod +x /home/santiago/crear_pagina.sh
 ```
 
+<img width="653" height="275" alt="imagen" src="https://github.com/user-attachments/assets/92022b8e-7e94-43dd-bc41-25237b36ec23" />
+
 
 
 3. Ejecuta las siguientes pruebas para verificar la creación del archivo HTML:
@@ -466,6 +468,7 @@ chmod +x /home/santiago/crear_pagina.sh
 cat /var/www/html/test.html                                                                    # Muestra el contenido generado para verificar el HTML
 ```
 
+<img width="928" height="344" alt="imagen" src="https://github.com/user-attachments/assets/a46d3e2a-1e85-43b0-857d-ad26fd9b6bf1" />
 
 
 
