@@ -385,6 +385,25 @@ echo "$IP   $DOMINIO" | sudo tee -a "$FICHERO_HOSTS" > /dev/null
 echo "Se ha añadido correctamente '$IP $DOMINIO' a $FICHERO_HOSTS."
 ```
 
+2. Crea el archivo y dale permisos de ejecución:
+
+```
+nano /home/santiago/anadir_hosts.sh
+chmod +x /home/santiago/anadir_hosts.sh
+```
+
+
+
+
+3. Ejecuta las siguientes pruebas en la terminal para comprobar su funcionamiento:
+
+```
+/home/santiago/anadir_hosts.sh                          # Demuestra el error de sintaxis al faltar parámetros
+/home/santiago/anadir_hosts.sh 127.0.0.1 prueba.local   # Demuestra que añade la IP y el dominio correctamente
+/home/santiago/anadir_hosts.sh 127.0.0.1 prueba.local   # Demuestra que detecta que el dominio ya existe
+```
+
+
 ## SCRIPT 3
 
 1. Script para crear una página web básica (``crear_pagina.sh``)
