@@ -1,57 +1,145 @@
 # Actividad #3: Directivas básicas de Apache2
 
-Análisis de las principales directivas de configuración del servidor web **Apache2** en **Ubuntu**, indicando su función, su valor por defecto y el fichero donde se definen.
+---
+
+## Tabla Resumen
+
+| Directiva / Elemento | Contexto | Ubicación exacta en Ubuntu (Rutas) | Valor / Comportamiento por defecto |
+| :--- | :--- | :--- | :--- |
+| `<IfModule>` | `server config`, `virtual host`, `directory`, `.htaccess` | `/etc/apache2/apache2.conf`<br>`/etc/apache2/ports.conf`<br>`/etc/apache2/mods-available/*.conf`<br>`/etc/apache2/sites-available/*.conf`<br>`/var/www/html/.htaccess` | No tiene valor por defecto (bloque condicional). |
+| `LoadModule` | `server config`, `virtual host` | `/etc/apache2/mods-available/*.load` (disponibles)<br>`/etc/apache2/mods-enabled/*.load` (activos)<br>Binarios en: `/usr/lib/apache2/modules/*.so` | No carga módulos por defecto; depende de los enlaces `.load` habilitados. |
+| `Include` / `IncludeOptional` | `server config`, `virtual host`, `directory` | `/etc/apache2/apache2.conf` (incluye `ports.conf`, `mods-enabled/`, `conf-enabled/` y `sites-enabled/`) | No tiene valor por defecto (requiere ruta de archivo o comodín). |
+| `<Directory>` | `server config`, `virtual host` | `/etc/apache2/apache2.conf`<br>`/etc/apache2/sites-available/*.conf`<br>`/etc/apache2/conf-available/*.conf` | En `<Directory />` el acceso por defecto en el núcleo de Apache es permitir todo, pero Ubuntu lo restringe con `Require all denied`. |
+| `<Files>` / `<FilesMatch>` | `server config`, `virtual host`, `directory`, `.htaccess` | `/etc/apache2/apache2.conf`<br>`/etc/apache2/sites-available/*.conf`<br>`/var/www/html/.htaccess` | No tiene valor por defecto (se aplica según coincidencia de nombre). |
+| `<Location>` | `server config`, `virtual host` | `/etc/apache2/apache2.conf`<br>`/etc/apache2/mods-available/*.conf`<br>`/etc/apache2/conf-available/*.conf`<br>`/etc/apache2/sites-available/*.conf` | No tiene valor por defecto (se aplica según coincidencia de URL). |
+| `<VirtualHost>` | `server config` | `/etc/apache2/sites-available/*.conf` (ej. `000-default.conf`)<br>`/etc/apache2/sites-enabled/*.conf` | Si no hay coincidencia por nombre de host, se usa el primer `<VirtualHost>` definido para esa IP y puerto. |
+| `.htaccess` | `directory` | Dentro de cualquier carpeta web pública, por defecto en `/var/www/html/.htaccess` (o subdirectorios de `/var/www/`) | Nombre por defecto: `.htaccess` (`AccessFileName`). Deshabilitado por defecto en Ubuntu (`AllowOverride None`). |
 
 ---
 
-## 1. Directivas de identificación
+## 1. Directivas de Apache
 
-| Directiva | Descripción | Ubicación en Ubuntu | Valor por defecto |
-| :--- | :--- | :--- | :--- |
-| **`ServerName`** | Establece el nombre de dominio (y opcionalmente el puerto) que el servidor usa para identificarse. | `/etc/apache2/sites-enabled/000-default.conf` | `#ServerName ://santiago.com` *(comentado por defecto)* |
-| **`ServerAdmin`** | Dirección de correo electrónico del administrador incluida en las páginas de error del servidor. | `/etc/apache2/sites-enabled/000-default.conf` | `santiago@localhost` |
-| **`ServerTokens`** | Controla qué información del servidor (versión, SO, módulos) se envía en la cabecera HTTP `Server`. | `/etc/apache2/conf-enabled/security.conf` | `OS` *(en Ubuntu)* / `Full` *(Apache estándar)* |
-
----
-
-## 2. Directivas de localización de ficheros
-
-| Directiva | Descripción | Ubicación en Ubuntu | Valor por defecto |
-| :--- | :--- | :--- | :--- |
-| **`DocumentRoot`** | Directorio raíz desde el cual Apache sirve los documentos y archivos web del sitio. | `/etc/apache2/sites-enabled/000-default.conf` | `/var/www/html` |
-| **`ErrorLog`** | Ruta del fichero de registro (log) donde se almacenan los errores del servidor. | `/etc/apache2/sites-enabled/000-default.conf` | `${APACHE_LOG_DIR}/error.log` *(equivale a `/var/log/apache2/error.log`)* |
-| **`CustomLog`** | Ruta del fichero de bitácora donde se registran las peticiones de acceso y el formato utilizado. | `/etc/apache2/sites-enabled/000-default.conf` | `${APACHE_LOG_DIR}/access.log combined` |
-| **`ServerRoot`** | Directorio base donde se aloja la configuración del servidor (base para rutas relativas). | `/etc/apache2/apache2.conf` | `"/etc/apache2"` *(comentado por defecto)* |
-
-> **Nota sobre `APACHE_LOG_DIR`:** Esta variable de entorno se encuentra definida en `/etc/apache2/envvars` con el valor `export APACHE_LOG_DIR=/var/log/apache2`.
-
----
-
-## 3. Directivas de control de la conexión
-
-| Directiva | Descripción | Ubicación en Ubuntu | Valor por defecto |
-| :--- | :--- | :--- | :--- |
-| **`Timeout`** | Tiempo máximo (en segundos) que el servidor esperará para recibir o enviar datos antes de cerrar la petición. | `/etc/apache2/apache2.conf` | `300` *(en Apache 2.4 actual; `60` en versiones antiguas)* |
-| **`KeepAlive`** | Habilita o deshabilita las conexiones persistentes (múltiples peticiones HTTP sobre una misma conexión TCP). | `/etc/apache2/apache2.conf` | `On` |
-| **`MaxKeepAliveRequests`** | Número máximo de peticiones permitidas dentro de una misma conexión persistente (`0` = ilimitadas). | `/etc/apache2/apache2.conf` | `100` |
-| **`KeepAliveTimeout`** | Tiempo (en segundos) que el servidor esperará peticiones subsiguientes en una conexión persistente antes de cerrarla. | `/etc/apache2/apache2.conf` | `5` |
+### `<IfModule>`
+* **¿Para qué se usa?** Es una sección condicional que encierra directivas que solo serán procesadas si un módulo específico está presente en Apache (ya sea compilado en el núcleo o cargado dinámicamente con `LoadModule`). También admite negación con `!` para actuar si el módulo *no* está presente.
+* **Contexto:** `server config`, `virtual host`, `directory`, `.htaccess`.
+* **Ubicación en Ubuntu:**
+  * `/etc/apache2/apache2.conf`
+  * `/etc/apache2/ports.conf`
+  * `/etc/apache2/mods-available/*.conf` (enlazados en `/etc/apache2/mods-enabled/`)
+  * `/etc/apache2/sites-available/*.conf`
+  * `/var/www/html/.htaccess`
+* **Valor por defecto:** No aplica (es una estructura de control de flujo).
+* **Documentación oficial:** [Apache Core - `<IfModule>`](https://httpd.apache.org/docs/2.4/mod/core.html#ifmodule)
+* **Ejemplo:**
+  ```apache
+  # Ubicación en Ubuntu: /etc/apache2/ports.conf
+  <IfModule ssl_module>
+      Listen 443
+  </IfModule>
+  ```
 
 ---
 
-## 4. Otras directivas (Logs)
+### `LoadModule`
+* **¿Para qué se usa?** Enlaza un archivo objeto o biblioteca dinámica (`.so` en Linux) y añade el módulo correspondiente a la lista de módulos activos del servidor en tiempo de inicio o reinicio.
+* **Contexto:** `server config`, `virtual host`.
+* **Ubicación en Ubuntu:**
+  * Definición de módulos disponibles: `/etc/apache2/mods-available/*.load`
+  * Módulos activos (enlaces simbólicos): `/etc/apache2/mods-enabled/*.load`
+  * Archivos compilados de los módulos (`.so`): `/usr/lib/apache2/modules/`
+* **Valor por defecto:** No tiene un valor por defecto; solo se cargan los módulos explícitamente declarados mediante esta directiva.
+* **Documentación oficial:** [Apache mod_so - `LoadModule`](https://httpd.apache.org/docs/2.4/mod/mod_so.html#loadmodule)
+* **Ejemplo:**
+  ```apache
+  # Ubicación en Ubuntu: /etc/apache2/mods-enabled/alias.load
+  LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
+  ```
 
-| Directiva | Descripción | Ubicación en Ubuntu | Valor por defecto |
-| :--- | :--- | :--- | :--- |
-| **`LogLevel`** | Indica el nivel de detalle o gravedad de los mensajes registrados en el `ErrorLog` (*debug, info, notice, warn, error, crit...*). | `/etc/apache2/apache2.conf` | `warn` |
-| **`LogFormat`** | Define plantillas o alias con la estructura de campos que posteriormente utilizará la directiva `CustomLog`. | `/etc/apache2/apache2.conf` | Define varios alias (`combined`, `common`, `vhost_combined`, etc.) |
+---
 
-### Ejemplo de configuración por defecto de `LogFormat` en `apache2.conf`
+### `Include`
+* **¿Para qué se usa?** Permite incluir y procesar otros archivos de configuración desde dentro de los archivos principales del servidor, facilitando una estructura modular. Admite comodines (como `*.conf`), pero **generará un error al arrancar** si la ruta o el comodín no coinciden con ningún archivo (para ignorar ausencias se usa `IncludeOptional`).
+* **Contexto:** `server config`, `virtual host`, `directory`.
+* **Ubicación en Ubuntu:**
+  * Principalmente en `/etc/apache2/apache2.conf`, desde donde se cargan `/etc/apache2/ports.conf`, `/etc/apache2/mods-enabled/*.load`, `/etc/apache2/mods-enabled/*.conf`, `/etc/apache2/conf-enabled/*.conf` y `/etc/apache2/sites-enabled/*.conf`.
+  * También puede usarse dentro de los archivos en `/etc/apache2/sites-available/*.conf`.
+* **Valor por defecto:** No tiene valor por defecto (requiere especificar una ruta absoluta o relativa a `ServerRoot`, que en Ubuntu es `/etc/apache2`).
+* **Documentación oficial:** [Apache Core - `Include`](https://httpd.apache.org/docs/2.4/mod/core.html#include)
+* **Ejemplo:**
+  ```apache
+  # Ubicación en Ubuntu: /etc/apache2/apache2.conf
+  Include ports.conf
+  IncludeOptional sites-enabled/*.conf
+  ```
 
-```apache
-LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
-LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
-LogFormat "%h %l %u %t \"%r\" %>s %O" common
-LogFormat "%{Referer}i -> %U" referer
-LogFormat "%{User-agent}i" agent
-```
+---
+
+### `<Directory>`
+* **¿Para qué se usa?** Encierra un grupo de directivas que se aplicarán únicamente al directorio del sistema de archivos indicado, a sus subdirectorios y a los archivos contenidos en ellos.
+* **Contexto:** `server config`, `virtual host`. *(No está permitido dentro de `.htaccess`)*.
+* **Ubicación en Ubuntu:**
+  * `/etc/apache2/apache2.conf` (donde se definen las reglas base para `/`, `/usr/share` y `/var/www`).
+  * `/etc/apache2/sites-available/*.conf` (enlazados en `/etc/apache2/sites-enabled/*.conf`).
+  * `/etc/apache2/conf-available/*.conf` (enlazados en `/etc/apache2/conf-enabled/*.conf`).
+* **Valor por defecto:** Por diseño interno de Apache, el acceso por defecto para `<Directory "/">` es permitir todo, pero Ubuntu lo sobrescribe por seguridad en `/etc/apache2/apache2.conf` con `Require all denied` y `AllowOverride None`.
+* **Documentación oficial:** [Apache Core - `<Directory>`](https://httpd.apache.org/docs/2.4/mod/core.html#directory)
+* **Ejemplo:**
+  ```apache
+  # Ubicación en Ubuntu: /etc/apache2/apache2.conf
+  <Directory />
+      Options FollowSymLinks
+      AllowOverride None
+      Require all denied
+  </Directory>
+  ```
+
+---
+
+### `<Files>`
+* **¿Para qué se usa?** Limita el alcance de las directivas encerradas a un fichero o grupo de ficheros cuyo nombre base coincida con el patrón indicado (admite comodines como `?` y `*`). Para expresiones regulares se recomienda su variante `<FilesMatch>`.
+* **Contexto:** `server config`, `virtual host`, `directory`, `.htaccess`.
+* **Ubicación en Ubuntu:**
+  * `/etc/apache2/apache2.conf` (por defecto incluye un bloque `<FilesMatch "^\.ht">` para proteger los `.htaccess`).
+  * `/etc/apache2/sites-available/*.conf`
+  * `/etc/apache2/conf-available/*.conf`
+  * `/var/www/html/.htaccess` (o cualquier subdirectorio web).
+* **Valor por defecto:** No tiene valor por defecto; actúa únicamente sobre los archivos que coincidan con el criterio especificado.
+* **Documentación oficial:** [Apache Core - `<Files>`](https://httpd.apache.org/docs/2.4/mod/core.html#files)
+* **Ejemplo:**
+  ```apache
+  # Ubicación en Ubuntu: /etc/apache2/apache2.conf
+  <FilesMatch "^\.ht">
+      Require all denied
+  </FilesMatch>
+  ```
+
+---
+
+### `<Location>`
+* **¿Para qué se usa?** Aplica las directivas encerradas únicamente a las peticiones cuya **URL** coincida con la ruta especificada. Opera fuera del sistema de archivos (ideal para contenido generado dinámicamente, proxies inversos o manejadores internos como el estado del servidor).
+* **Contexto:** `server config`, `virtual host`. *(No está permitido dentro de `.htaccess`)*.
+* **Ubicación en Ubuntu:**
+  * `/etc/apache2/mods-available/*.conf` (por ejemplo, `/etc/apache2/mods-available/status.conf` o `info.conf`).
+  * `/etc/apache2/conf-available/*.conf`
+  * `/etc/apache2/sites-available/*.conf`
+  * `/etc/apache2/apache2.conf`
+* **Valor por defecto:** No tiene valor por defecto; se evalúa después de `<Directory>`, `.htaccess` y `<Files>`.
+* **Documentación oficial:** [Apache Core - `<Location>`](https://httpd.apache.org/docs/2.4/mod/core.html#location)
+* **Ejemplo:**
+  ```apache
+  # Ubicación en Ubuntu: /etc/apache2/mods-enabled/status.conf
+  <Location /server-status>
+      SetHandler server-status
+      Require local
+  </Location>
+  ```
+
+---
+
+### `<VirtualHost>`
+* **¿Para qué se usa?** Agrupa un conjunto de directivas que solo se aplicarán a un host virtual específico (identificado por dirección IP, puerto o nombre de dominio mediante `ServerName`), permitiendo alojar múltiples sitios web en un mismo servidor.
+* **Contexto:** `server config`.
+* **Ubicación en Ubuntu:**
+  * Archivos de configuración disponibles: `/etc/apache2/sites-available/` (por defecto viene `/etc/apache2/sites-available/000-default.conf` para HTTP y `default-ssl.conf` para HTTPS).
+
 
