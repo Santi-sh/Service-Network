@@ -1,4 +1,4 @@
-# Actividad #4: Directivas Básicas
+# Actividad #4: Directivas básicas de Apache2
 
 Investigación sobre el funcionamiento, contexto de ubicación, valores por defecto y ejemplos prácticos de las principales directivas de configuración en **Apache HTTP Server (v2.4)**, así como el uso de los archivos de configuración distribuida `.htaccess`.
 
