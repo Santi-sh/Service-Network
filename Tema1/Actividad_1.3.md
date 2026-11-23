@@ -1,4 +1,4 @@
-# Actividad #1: Directivas básicas de Apache2
+# Actividad #3: Directivas básicas de Apache2
 
 Análisis de las principales directivas de configuración del servidor web **Apache2** en **Ubuntu**, indicando su función, su valor por defecto y el fichero donde se definen.
 
