@@ -8,8 +8,8 @@ Análisis de las principales directivas de configuración del servidor web **Apa
 
 | Directiva | Descripción | Ubicación en Ubuntu | Valor por defecto |
 | :--- | :--- | :--- | :--- |
-| **`ServerName`** | Establece el nombre de dominio (y opcionalmente el puerto) que el servidor usa para identificarse. | `/etc/apache2/sites-enabled/000-default.conf` | `#ServerName ://example.com` *(comentado por defecto)* |
-| **`ServerAdmin`** | Dirección de correo electrónico del administrador incluida en las páginas de error del servidor. | `/etc/apache2/sites-enabled/000-default.conf` | `webmaster@localhost` |
+| **`ServerName`** | Establece el nombre de dominio (y opcionalmente el puerto) que el servidor usa para identificarse. | `/etc/apache2/sites-enabled/000-default.conf` | `#ServerName ://santiago.com` *(comentado por defecto)* |
+| **`ServerAdmin`** | Dirección de correo electrónico del administrador incluida en las páginas de error del servidor. | `/etc/apache2/sites-enabled/000-default.conf` | `santiago@localhost` |
 | **`ServerTokens`** | Controla qué información del servidor (versión, SO, módulos) se envía en la cabecera HTTP `Server`. | `/etc/apache2/conf-enabled/security.conf` | `OS` *(en Ubuntu)* / `Full` *(Apache estándar)* |
 
 ---
