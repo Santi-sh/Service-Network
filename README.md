@@ -20,5 +20,5 @@ Actividades | Descripción
 [Actividad 1](Tema1/Actividad_1.1.md) | Instalación de Apache
 [Actividad 2](Tema1/Actividad_1.2.md) | Configuración básica de Apache
 [Actividad 3](Tema1/Actividad_1.3.md) | Directiva básicas
-[Actividad 4](Tema1/Actividad_1.4.md) | Directiva directory
-[Actividad 5](Tema1/Actividad_1.5.md) | Expresiones regulares
+[Actividad 4](Tema1/Actividad_1.4.md) | Directiva básicas 2
+[Actividad 5](Tema1/Actividad_1.5.md) | Directiva directory
