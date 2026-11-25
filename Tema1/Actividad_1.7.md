@@ -1,4 +1,4 @@
-# Actividad #7: Autenticación
+# Actividad #9: Autenticación
 
 En esta práctica se configura la autenticación básica (`Basic`), el control de acceso mediante usuarios y grupos, y la combinación de restricciones por IP y credenciales mediante la directiva `Satisfy` en un servidor **Apache HTTP Server 2.4** sobre **Ubuntu**.
 
