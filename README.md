@@ -22,3 +22,5 @@ Actividades | Descripción
 [Actividad 3](Tema1/Actividad_1.3.md) | Directiva básicas
 [Actividad 4](Tema1/Actividad_1.4.md) | Directiva básicas 2
 [Actividad 5](Tema1/Actividad_1.5.md) | Directiva directory
+[Actividad 6](Tema1/Actividad_1.6.md) | Virtual Host
+[Actividad 7](Tema1/Actividad_1.7.md) | Autenticación
