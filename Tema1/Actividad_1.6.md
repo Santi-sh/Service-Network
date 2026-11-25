@@ -1,4 +1,4 @@
-# Actividad #6: Configuración de Virtual Hosts
+# Actividad #8: Configuración de Virtual Hosts
 
 En esta práctica se configura el alojamiento virtual basado en nombres (*Name-based Virtual Hosting*) en **Apache HTTP Server 2.4** sobre **Ubuntu**, permitiendo servir múltiples sitios web independientes (`ejemplo.com` y `prueba.com`) desde un único servidor y una misma dirección IP.
 
