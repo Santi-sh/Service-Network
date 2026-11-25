@@ -19,8 +19,8 @@ En esta práctica se configura el alojamiento virtual basado en nombres (*Name-b
 Por defecto, Apache sirve archivos desde `/var/www/html`. Para alojar dos sitios independientes, creamos un directorio raíz (`public_html`) para cada dominio dentro de `/var/www/`.
 
 ```bash
-sudo mkdir -p /var/www/://ejemplo.com
-sudo mkdir -p /var/www/://prueba.com
+sudo mkdir -p /var/www/ejemplo.com/public_html
+sudo mkdir -p /var/www/prueba.com/public_html
 ```
 
 ---
@@ -30,8 +30,8 @@ sudo mkdir -p /var/www/://prueba.com
 Cambiamos el propietario de los directorios para que nuestro usuario habitual (`$USER`) pueda editar el contenido web sin necesidad de usar `sudo` constantemente, y aseguramos los permisos de lectura (`755`) en `/var/www`.
 
 ```bash
-sudo chown -R $USER:$USER /var/www/://ejemplo.com
-sudo chown -R $USER:$USER /var/www/://prueba.com
+sudo chown -R $USER:$USER /var/www/ejemplo.com/public_html
+sudo chown -R $USER:$USER /var/www/prueba.com/public_html
 sudo chmod -R 755 /var/www
 ```
 
@@ -45,7 +45,7 @@ Creamos un archivo `index.html` distinto en cada carpeta para poder comprobar vi
 
 ### 3.1. Página para `ejemplo.com`
 ```bash
-nano /var/www/://ejemplo.com/index.html
+nano /var/www/ejemplo.com/public_html/index.html
 ```
 Contenido:
 ```html
@@ -61,7 +61,7 @@ Contenido:
 
 ### 3.2. Página para `prueba.com`
 ```bash
-nano /var/www/://prueba.com/index.html
+nano /var/www/prueba.com/public_html/index.html
 ```
 Contenido:
 ```html
@@ -92,8 +92,8 @@ Dejamos el archivo con la siguiente estructura:
 <VirtualHost *:80>
     ServerAdmin admin@ejemplo.com
     ServerName ejemplo.com
-    ServerAlias ://ejemplo.com
-    DocumentRoot /var/www/://ejemplo.com
+    ServerAlias www.ejemplo.com
+    DocumentRoot /var/www/ejemplo.com/public_html
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -110,8 +110,8 @@ Modificamos las referencias para el segundo dominio:
 <VirtualHost *:80>
     ServerAdmin admin@prueba.com
     ServerName prueba.com
-    ServerAlias ://prueba.com
-    DocumentRoot /var/www/://prueba.com
+    ServerAlias www.prueba.com
+    DocumentRoot /var/www/prueba.com/public_html
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -152,8 +152,8 @@ sudo nano /etc/hosts
 
 Añadimos las siguientes líneas al final del archivo:
 ```text
-127.0.0.1   ejemplo.com ://ejemplo.com
-127.0.0.1   prueba.com ://prueba.com
+127.0.0.1   ejemplo.com www.ejemplo.com
+127.0.0.1   prueba.com www.prueba.com
 ```
 
 > **[INSERTAR CAPTURA 4]:** *Contenido del fichero `/etc/hosts` con las entradas de resolución local configuradas.*
